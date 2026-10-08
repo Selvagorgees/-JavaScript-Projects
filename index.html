@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My One-Page Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f5f0fa;
+      margin: 0;
+      padding: 25px;
+    }
+    h1 { color: #69428c; }
+    .gallery img {
+      width: 200px;
+      max-width: 90%;
+      margin: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.9);
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85%;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Website</h1>
+  <p>My JavaScript Image Gallery</p>
+
+  <div class="gallery">
+    <img src="https://picsum.photos/id/10/400/300" alt="Nature photo 1" onclick="openLightbox(this.src)">
+    <img src="https://picsum.photos/id/20/400/300" alt="Nature photo 2" onclick="openLightbox(this.src)">
+    <img src="https://picsum.photos/id/30/400/300" alt="Nature photo 3" onclick="openLightbox(this.src)">
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="close" aria-label="Close image">&times;</span>
+    <img id="largeImage" alt="Enlarged gallery photo">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById("largeImage").src = src;
+      document.getElementById("lightbox").style.display = "flex";
+    }
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeLightbox();
+    });
+  </script>
+</body>
+</html>
